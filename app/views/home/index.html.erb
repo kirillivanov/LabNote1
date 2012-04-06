@@ -43,7 +43,7 @@
             <% unless r == current_researcher %>
               <%= r.name %><br />
               <ul>
-              <% r.experiments.each do |e| %>
+              <% r.experiments.where(:project_id => p.id).each do |e| %>
                 <li><%= link_to e.name, e %></li>
               <% end %>
             </ul>
