@@ -1,0 +1,12 @@
+<%= form_for @experiment do |f| %>
+  <%#= f.error_messages %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+     <%= f.label :project_id %> *followed projects<br />
+     <%= f.select :project_id , options_for_select( current_researcher.projects.order("name asc").all.collect { |p| [p.name, p.id] }), :multiple => false, :size => 3 %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

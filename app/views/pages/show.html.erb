@@ -1,22 +1,9 @@
-<p>
-  <strong>Text:</strong>
-  <%= @page.text %>
-</p>
-<p>
-  <strong>Attachment:</strong>
-  <%= @page.attachment %>
-</p>
-<p>
-  <strong>Notebook:</strong>
-  <%= @page.notebook_id %>
-</p>
-<p>
-  <strong>Experiment:</strong>
-  <%= @page.experiment_id %>
-</p>
+<% @page.notes.each do |n| %>
+  Note for experiment: <%= n.experiment.name %><br /> 
+  Text: <%= n.text %><br />
+  Attachment: <%= n.attachment %><br />
+<% end %>
 
-<p>
-  <%= link_to "Edit", edit_page_path(@page) %> |
-  <%= link_to "Destroy", @page, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", pages_path %>
-</p>
+<%= render 'notes/form' %>
+
+<%= link_to "home", root_path %>

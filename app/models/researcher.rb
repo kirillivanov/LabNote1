@@ -3,7 +3,10 @@ class Researcher < ActiveRecord::Base
   has_many :assignments
   has_many :projects, :through => :assignments, :source => :project, :dependent => :destroy
 
+  has_many :experiments, :dependent => :destroy 
+
   has_one :notebook, :dependent => :destroy	
+  
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

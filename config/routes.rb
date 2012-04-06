@@ -1,5 +1,9 @@
 LabNotebookApp::Application.routes.draw do
 
+  resources :experiments
+
+  resources :notes
+
   resources :pages
 
   resources :projects

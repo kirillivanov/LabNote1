@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120406150756) do
+ActiveRecord::Schema.define(:version => 20120406183559) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "researcher_id"
@@ -24,19 +24,33 @@ ActiveRecord::Schema.define(:version => 20120406150756) do
   add_index "assignments", ["project_id"], :name => "index_assignments_on_project_id"
   add_index "assignments", ["researcher_id"], :name => "index_assignments_on_researcher_id"
 
+  create_table "experiments", :force => true do |t|
+    t.string   "name"
+    t.integer  "project_id"
+    t.integer  "researcher_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "notebooks", :force => true do |t|
     t.integer  "researcher_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
 
-  create_table "pages", :force => true do |t|
+  create_table "notes", :force => true do |t|
     t.text     "text"
-    t.string   "attachment"
-    t.integer  "notebook_id"
     t.integer  "experiment_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.string   "attachment"
+    t.integer  "page_id"
+  end
+
+  create_table "pages", :force => true do |t|
+    t.integer  "notebook_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "projects", :force => true do |t|

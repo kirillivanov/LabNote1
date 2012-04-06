@@ -22,14 +22,27 @@
     <% end %>
       </ul>
 
-      <%= link_to "New Page", new_page_path %>
+      
+      <%if current_researcher.experiments %>
+        <p>Experiments:</p>
+        <% current_researcher.experiments.each_with_index do |e, i|%>
+          <%  if followed?(e.project) %>
+            <%= link_to " #{i+1}. #{e.name} (project #{e.project.name})", e %> <br />
+          <% else %>
+            unfollowd <%=  " #{i+1}. #{e.name} (project #{e.project.name})" %> <br />
+          <% end %>
+        <% end %>
+      <% end %>
+      <%= link_to "New Experiment", new_experiment_path %>
+      
+
       <%if current_researcher.notebook.pages %>
         <p>Pages: </p>
         <%current_researcher.notebook.pages.each_with_index do |p, i|%>
             <%= link_to "Page #{i+1} / #{p.created_at}", p %> <br />
         <% end %>
       <% end %>
-
+      <%= render "pages/form" %>
 
   <% else %>
     <%= render "notebooks/form" %>

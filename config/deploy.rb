@@ -33,15 +33,35 @@ namespace :deploy do
   end
 
   task :upload_settings do
-    run "mkdir -p #{shared_path}/uploads/"
+    run "mkdir -p #{shared_path}/assets/"
+    run "mkdir -p #{shared_path}/spree/"
+  end
+
+  task :bundle_new_release do
+    puts '---------------------------------------------------------------------'
+    puts 'BUNDLE RELEASE AND PRECOMPILE ASSETS'
+    puts '---------------------------------------------------------------------'
+    run "cd #{release_path} && bundle install --without development test"
   end
 
   task :symlink_shared do
     puts '---------------------------------------------------------------------'
-    puts 'symlink_shared: #{shared_path}/uploads #{release_path}/public/uploads'
+    puts 'symlink_shared: #{shared_path}/assets #{release_path}/public/assets'
+    puts 'symlink_shared: #{shared_path}/spree #{release_path}/public/spree'
     puts '---------------------------------------------------------------------'
-    run "ln -nfs #{shared_path}/uploads #{release_path}/public/uploads"
+    run "ln -nfs #{shared_path}/assets #{release_path}/public/assets"
+    run "ln -nfs #{shared_path}/spree #{release_path}/public/spree"
+
+    deploy.bundle_new_release
+   end
+
+  task :bundle_new_release do
+    puts '---------------------------------------------------------------------'
+    puts 'BUNDLE RELEASE AND PRECOMPILE ASSETS'
+    puts '---------------------------------------------------------------------'
+    run "cd #{release_path} && bundle install --without development test && bundle exec rake assets:precompile"
   end
+
 end
 
 after 'deploy:setup', 'deploy:upload_settings'

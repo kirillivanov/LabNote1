@@ -1,0 +1,20 @@
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Project</th>
+    <th>Researcher</th>
+  </tr>
+  <% for experiment in @experiments %>
+    <tr>
+      <td><%= experiment.name %></td>
+      <td><%= experiment.project_id %></td>
+      <td><%= experiment.researcher_id %></td>
+      <td><%= link_to "Show", experiment %></td>
+      <td><%= link_to "Edit", edit_experiment_path(experiment) %></td>
+      <td><%= link_to "Destroy", experiment, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Experiment", new_experiment_path %></p>

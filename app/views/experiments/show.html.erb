@@ -1,0 +1,20 @@
+
+
+<p>
+  <strong>Name:</strong>
+  <%= @experiment.name %>
+</p>
+<p>
+  <strong>Project:</strong>
+  <%#= @experiment.project_id %>
+</p>
+<p>
+  <strong>Researcher:</strong>
+  <%#= @experiment.researcher_id %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_experiment_path(@experiment) %> |
+  <%= link_to "Destroy", @experiment, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", experiments_path %>
+</p>

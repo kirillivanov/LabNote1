@@ -12,8 +12,6 @@ class NotebooksController < ApplicationController
   end
 
   def create
-    logger.info "-----------------------------------------"
-    logger.info current_researcher.email
     @notebook = current_researcher.build_notebook
     if @notebook.save
       redirect_to root_path, :notice => "Successfully created notebook"
