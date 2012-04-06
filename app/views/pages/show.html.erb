@@ -2,7 +2,7 @@
 <% @page.notes.each do |n| %>
   Note for experiment: <%= n.experiment.name if n.experiment %> <%= link_to "(edit)", edit_note_path(n) %><br /> 
   Text: <%= n.text %><br />
-  Attachment: <%= n.attachment %><br />
+  Attachment: <%= link_to "#{File.basename(n.attachment.url)}", n.attachment.url %><br />
   <%= n.created_at %> <br />
   ----------------------------------------------<br />
 <% end %>

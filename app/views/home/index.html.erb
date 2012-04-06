@@ -5,8 +5,8 @@
   <%  if current_researcher.notebook %>
 
     Your notebook(<%= link_to("delete", current_researcher.notebook, :confirm => 'Are you sure?', :method => :delete) %>): <br />
-    <p><%= link_to "New Project", new_project_path %></p>
 
+    <h4>Projects</h4>
     <%if @projects %>
       <ul>
       <%@projects.each do |p|%>
@@ -18,12 +18,12 @@
         <% p.researchers.each do |r| %>
           <%= r.name %>
         <% end %>
-
+        <p><%= link_to "New Project", new_project_path %></p>
       <% end %>
     <% end %>
       </ul>
       <%if current_researcher.experiments %>
-        <p>Experiments:</p>
+        <h4>My experiments:</h4>
         <% current_researcher.experiments.each_with_index do |e, i|%>
           <%  if followed?(e.project) %>
             <%= link_to " #{i+1}. #{e.name} (project #{e.project.name})", e %><%= link_to "(edit)", edit_experiment_path(e) %><%= link_to "(delete)", e, :confirm => 'Are you sure?', :method => :delete %> <br />
@@ -34,7 +34,7 @@
       <% end %>
       <%= link_to "New Experiment", new_experiment_path %>
       
-      <h4>Other user experiments</h4>
+      <h4>Other user experiments:</h4>
 
       <% @projects.each do |p| %>
           Project <%= p.name %>: <br />
@@ -52,7 +52,7 @@
       <% end %>
 
       <%if current_researcher.notebook.pages %>
-        <p>Pages: </p>
+        <h4>My Pages: </h4>
         <%current_researcher.notebook.pages.each_with_index do |p, i|%>
             <%= link_to "Page #{i+1} / #{p.created_at}", p %> <%= link_to "(delete)", p, :confirm => 'Are you sure?', :method => :delete %> <br />
         <% end %>
