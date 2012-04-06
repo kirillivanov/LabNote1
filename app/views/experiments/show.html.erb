@@ -1,20 +1,19 @@
-
-
 <p>
   <strong>Name:</strong>
   <%= @experiment.name %>
 </p>
 <p>
   <strong>Project:</strong>
-  <%#= @experiment.project_id %>
+  <%= @experiment.project.name %>
 </p>
 <p>
   <strong>Researcher:</strong>
-  <%#= @experiment.researcher_id %>
+  <%= @experiment.researcher.name %>
 </p>
 
 <p>
   <%= link_to "Edit", edit_experiment_path(@experiment) %> |
-  <%= link_to "Destroy", @experiment, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", experiments_path %>
+  <%= link_to "Destroy", @experiment, :confirm => 'Are you sure?', :method => :delete %> 
 </p>
+
+<%= link_to "home", root_path %>

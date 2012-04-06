@@ -1,0 +1,19 @@
+<%= form_for @note do |f| %>
+  <%#= f.error_messages %>
+  <p>
+    <%= f.label :text %><br />
+    <%= f.text_area :text %>
+  </p>
+
+  <%#= f.hidden_field :page_id, :value => @page.id %>
+
+   <p>
+     <%= f.label :experiment_id %><br />
+     <%= f.select :experiment_id , options_for_select( current_researcher.experiments.order("name asc").all.collect { |e| [e.name, e.id] }), :multiple => false, :size => 3 %>
+  </p>
+  <p>
+    <%= f.label :attachment %><br />
+    <%= f.text_field :attachment %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

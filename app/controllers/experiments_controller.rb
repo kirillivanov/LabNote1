@@ -27,7 +27,7 @@ class ExperimentsController < ApplicationController
   def update
     @experiment = Experiment.find(params[:id])
     if @experiment.update_attributes(params[:experiment])
-      redirect_to @experiment, :notice  => "Successfully updated experiment."
+      redirect_to root_path, :notice  => "Successfully updated experiment."
     else
       render :action => 'edit'
     end

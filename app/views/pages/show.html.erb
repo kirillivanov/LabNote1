@@ -1,7 +1,10 @@
+<h2>Page <%= @page.created_at %></h2>
 <% @page.notes.each do |n| %>
-  Note for experiment: <%= n.experiment.name %><br /> 
+  Note for experiment: <%= n.experiment.name if n.experiment %> <%= link_to "(edit)", edit_note_path(n) %><br /> 
   Text: <%= n.text %><br />
   Attachment: <%= n.attachment %><br />
+  <%= n.created_at %> <br />
+  ----------------------------------------------<br />
 <% end %>
 
 <%= render 'notes/form' %>

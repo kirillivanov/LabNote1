@@ -1,15 +1,13 @@
 class NotesController < ApplicationController
   def index
-    @notes = Note.all
+    redirect_to root_path
   end
 
   def show
-    @note = Note.find(params[:id])
+    redirect_to root_path
   end
 
   def new
-    logger.info "-----------------------------"
-    logger.info params[:page]
     @note = Note.new
   end
 
@@ -29,7 +27,7 @@ class NotesController < ApplicationController
   def update
     @note = Note.find(params[:id])
     if @note.update_attributes(params[:note])
-      redirect_to @note, :notice  => "Successfully updated note."
+      redirect_to Page.find(@note.page_id), :notice  => "Successfully updated note."
     else
       render :action => 'edit'
     end
@@ -38,6 +36,6 @@ class NotesController < ApplicationController
   def destroy
     @note = Note.find(params[:id])
     @note.destroy
-    redirect_to notes_url, :notice => "Successfully destroyed note."
+    redirect_to root_path, :notice => "Successfully destroyed note."
   end
 end

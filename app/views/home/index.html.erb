@@ -10,10 +10,11 @@
     <%if @projects %>
       <ul>
       <%@projects.each do |p|%>
-        <li> <%= p.name %>(<%= link_to "delete", p, :confirm => 'Are you sure?', :method => :delete %>)
+        <li> Project <%= p.name %>(<%= link_to "delete", p, :confirm => 'Are you sure?', :method => :delete %>)
              <%= link_to("follow", follow_path(p)) unless followed?(p) %>
              <%= link_to("unfollow", unfollow_path(p)) if followed?(p) %>
         </li> 
+        Project followers:
         <% p.researchers.each do |r| %>
           <%= r.name %>
         <% end %>
@@ -21,13 +22,11 @@
       <% end %>
     <% end %>
       </ul>
-
-      
       <%if current_researcher.experiments %>
         <p>Experiments:</p>
         <% current_researcher.experiments.each_with_index do |e, i|%>
           <%  if followed?(e.project) %>
-            <%= link_to " #{i+1}. #{e.name} (project #{e.project.name})", e %> <br />
+            <%= link_to " #{i+1}. #{e.name} (project #{e.project.name})", e %><%= link_to "(edit)", edit_experiment_path(e) %><%= link_to "(delete)", e, :confirm => 'Are you sure?', :method => :delete %> <br />
           <% else %>
             unfollowd <%=  " #{i+1}. #{e.name} (project #{e.project.name})" %> <br />
           <% end %>
@@ -35,18 +34,36 @@
       <% end %>
       <%= link_to "New Experiment", new_experiment_path %>
       
+      <h4>Other user experiments</h4>
+
+      <% @projects.each do |p| %>
+          Project <%= p.name %>: <br />
+          <% p.researchers.each do |r| %>
+            <% unless r == current_researcher %>
+              <%= r.name %><br />
+              <ul>
+              <% r.experiments.each do |e| %>
+                <li><%= link_to e.name, e %></li>
+              <% end %>
+            </ul>
+            <% end %>
+          <% end %>
+
+      <% end %>
 
       <%if current_researcher.notebook.pages %>
         <p>Pages: </p>
         <%current_researcher.notebook.pages.each_with_index do |p, i|%>
-            <%= link_to "Page #{i+1} / #{p.created_at}", p %> <br />
+            <%= link_to "Page #{i+1} / #{p.created_at}", p %> <%= link_to "(delete)", p, :confirm => 'Are you sure?', :method => :delete %> <br />
         <% end %>
       <% end %>
       <%= render "pages/form" %>
 
+
   <% else %>
     <%= render "notebooks/form" %>
   <% end %>
+
 <% else %>
   <%= link_to("sign up", new_researcher_registration_path) %>
   <%= link_to("sign in", researcher_session_path) %>

@@ -16,7 +16,7 @@ class PagesController < ApplicationController
   def create
     @page = current_researcher.notebook.pages.new(params[:page])
     if Page.last && Page.last.created_at.to_date == Date.today && Page.last.notebook_id == current_researcher.notebook.id
-      redirect_to root_path, :notice => "You can create only 1 page per day!"
+      redirect_to root_path, :alert => "You can create only 1 page per day!"
     else
       if @page.save
         redirect_to root_path, :notice => "Successfully created page."
