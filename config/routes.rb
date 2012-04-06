@@ -1,9 +1,20 @@
 LabNotebookApp::Application.routes.draw do
-  get "home/home"
 
+  resources :pages
+
+  resources :projects
+  resources :notebooks
   devise_for :researchers
 
-  resources :researchers
+  get "home/home"
+
+  get "projects/follow"
+  match "follow/:id" =>  "projects#follow", :as => :follow
+
+  get "projects/unfollow"
+  match "unfollow/:id" =>  "projects#unfollow", :as => :unfollow
+
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

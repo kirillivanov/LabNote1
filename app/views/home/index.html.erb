@@ -1,1 +1,40 @@
+<% if researcher_signed_in?  %>
+  
+  <h2 style="margin:0; padding: 0;"><%= "Hi, #{current_researcher.name}" if  current_researcher.name %></h2>
+  <%= "You logged in as #{ current_researcher.email }" %>(<%= link_to("sign_out", destroy_researcher_session_path, :method => :get) %>, <%= link_to("edit", edit_researcher_registration_path ) %>)<br /><br />
+  <%  if current_researcher.notebook %>
 
+    Your notebook(<%= link_to("delete", current_researcher.notebook, :confirm => 'Are you sure?', :method => :delete) %>): <br />
+    <p><%= link_to "New Project", new_project_path %></p>
+
+    <%if @projects %>
+      <ul>
+      <%@projects.each do |p|%>
+        <li> <%= p.name %>(<%= link_to "delete", p, :confirm => 'Are you sure?', :method => :delete %>)
+             <%= link_to("follow", follow_path(p)) unless followed?(p) %>
+             <%= link_to("unfollow", unfollow_path(p)) if followed?(p) %>
+        </li> 
+        <% p.researchers.each do |r| %>
+          <%= r.name %>
+        <% end %>
+
+      <% end %>
+    <% end %>
+      </ul>
+
+      <%= link_to "New Page", new_page_path %>
+      <%if current_researcher.notebook.pages %>
+        <p>Pages: </p>
+        <%current_researcher.notebook.pages.each_with_index do |p, i|%>
+            <%= link_to "Page #{i+1} / #{p.created_at}", p %> <br />
+        <% end %>
+      <% end %>
+
+
+  <% else %>
+    <%= render "notebooks/form" %>
+  <% end %>
+<% else %>
+  <%= link_to("sign up", new_researcher_registration_path) %>
+  <%= link_to("sign in", researcher_session_path) %>
+<% end %>

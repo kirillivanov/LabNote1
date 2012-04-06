@@ -9,10 +9,7 @@
 <body>
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
-<%= "You logged in as #{ current_researcher.email }" if researcher_signed_in? %> 
-<%= link_to("sign up", new_researcher_registration_path) unless researcher_signed_in? %>
-<%= link_to("sign in", researcher_session_path) unless researcher_signed_in? %>
-<%= link_to("sign_out", destroy_researcher_session_path) if researcher_signed_in? %>
+
 <%= yield %>
 <%#= debug params %>
 </body>

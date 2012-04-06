@@ -1,0 +1,22 @@
+<p>
+  <strong>Text:</strong>
+  <%= @page.text %>
+</p>
+<p>
+  <strong>Attachment:</strong>
+  <%= @page.attachment %>
+</p>
+<p>
+  <strong>Notebook:</strong>
+  <%= @page.notebook_id %>
+</p>
+<p>
+  <strong>Experiment:</strong>
+  <%= @page.experiment_id %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_page_path(@page) %> |
+  <%= link_to "Destroy", @page, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", pages_path %>
+</p>

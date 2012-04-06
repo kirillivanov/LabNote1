@@ -1,0 +1,15 @@
+<table>
+  <tr>
+    <th>Researcher</th>
+  </tr>
+  <% for notebook in @notebooks %>
+    <tr>
+      <td><%= notebook.researcher_id %></td>
+      <td><%= link_to "Show", notebook %></td>
+      <td><%= link_to "Edit", edit_notebook_path(notebook) %></td>
+      <td><%= link_to "Destroy", notebook, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Notebook", new_notebook_path %></p>

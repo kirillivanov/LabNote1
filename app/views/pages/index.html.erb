@@ -1,0 +1,21 @@
+<table>
+  <tr>
+    <th>Text</th>
+    <th>Attachment</th>
+    <th>Notebook</th>
+    <th>Experiment</th>
+  </tr>
+  <% for page in @pages %>
+    <tr>
+      <td><%= page.text %></td>
+      <td><%= page.attachment %></td>
+      <td><%= page.notebook_id %></td>
+      <td><%= page.experiment_id %></td>
+      <td><%= link_to "Show", page %></td>
+      <td><%= link_to "Edit", edit_page_path(page) %></td>
+      <td><%= link_to "Destroy", page, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Page", new_page_path %></p>

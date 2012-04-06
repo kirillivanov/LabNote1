@@ -1,0 +1,45 @@
+class PagesController < ApplicationController
+  def index
+    @pages = Page.all
+  end
+
+  def show
+    @page = Page.find(params[:id])
+  end
+
+  def new
+    @page = Page.new
+  end
+
+  def create
+    @page = current_researcher.notebook.pages.new(params[:page])
+    if Page.last && Page.last.created_at < Date.today + 1.day && Page.last.notebook_id == current_researcher.notebook.id
+      redirect_to root_path, :notice => "You can create only 1 page per day!"
+    else
+      if @page.save
+        redirect_to root_path, :notice => "Successfully created page."
+      else
+        render :action => 'new'
+      end
+    end
+  end
+
+  def edit
+    @page = Page.find(params[:id])
+  end
+
+  def update
+    @page = Page.find(params[:id])
+    if @page.update_attributes(params[:page])
+      redirect_to @page, :notice  => "Successfully updated page."
+    else
+      render :action => 'edit'
+    end
+  end
+
+  def destroy
+    @page = Page.find(params[:id])
+    @page.destroy
+    redirect_to pages_url, :notice => "Successfully destroyed page."
+  end
+end

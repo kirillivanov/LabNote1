@@ -1,0 +1,11 @@
+one:
+  text: MyText
+  attachment: MyString
+  notebook_id: 1
+  experiment_id: 1
+
+two:
+  text: MyText
+  attachment: MyString
+  notebook_id: 1
+  experiment_id: 1

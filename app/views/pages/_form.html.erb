@@ -1,0 +1,20 @@
+<%= form_for @page do |f| %>
+  <%#= f.error_messages %>
+  <p>
+    <%= f.label :text %><br />
+    <%= f.text_area :text %>
+  </p>
+  <p>
+    <%= f.label :attachment %><br />
+    <%= f.text_field :attachment %>
+  </p>
+  <p>
+    <%= f.label :notebook_id %><br />
+    <%= f.number_field :notebook_id %>
+  </p>
+  <p>
+    <%= f.label :experiment_id %><br />
+    <%= f.number_field :experiment_id %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

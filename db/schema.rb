@@ -11,7 +11,39 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120406095456) do
+ActiveRecord::Schema.define(:version => 20120406150756) do
+
+  create_table "assignments", :force => true do |t|
+    t.integer  "researcher_id"
+    t.integer  "project_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "assignments", ["project_id", "researcher_id"], :name => "index_assignments_on_project_id_and_researcher_id", :unique => true
+  add_index "assignments", ["project_id"], :name => "index_assignments_on_project_id"
+  add_index "assignments", ["researcher_id"], :name => "index_assignments_on_researcher_id"
+
+  create_table "notebooks", :force => true do |t|
+    t.integer  "researcher_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "pages", :force => true do |t|
+    t.text     "text"
+    t.string   "attachment"
+    t.integer  "notebook_id"
+    t.integer  "experiment_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "projects", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "researchers", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -26,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20120406095456) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "name"
   end
 
   add_index "researchers", ["email"], :name => "index_researchers_on_email", :unique => true
