@@ -18,8 +18,9 @@
         <% p.researchers.each do |r| %>
           <%= r.name %>
         <% end %>
-        <p><%= link_to "New Project", new_project_path %></p>
+
       <% end %>
+      <p><%= link_to "New Project", new_project_path %></p>
     <% end %>
       </ul>
       <%if current_researcher.experiments %>
