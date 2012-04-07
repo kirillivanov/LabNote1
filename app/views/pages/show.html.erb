@@ -3,7 +3,7 @@
 
 <h4>Page <%= @page.created_at %></h4>
 <% @notes.each do |n| %>
-<div style="background: white; width: 300px; margin-bottom: 10px; border: 1px solid #ccc; padding: 5px;">
+<div style="background: white; width: 400px; margin-bottom: 10px; border: 1px solid #ccc; padding: 5px;">
   Note for experiment: <%= n.experiment.name if n.experiment %> <%= link_to "(edit)", edit_note_path(n) %> <%= link_to "(delete)", n, :confirm => 'Are you sure?', :method => :delete %> <br /> 
   Text: <%= n.text %><br />
   Attachment: <%= link_to("#{File.basename(n.attachment.url)}", n.attachment.url) if n.attachment.url %><br />
