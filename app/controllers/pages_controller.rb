@@ -17,7 +17,7 @@ class PagesController < ApplicationController
     logger.info "-----------------------------------------------------"
     logger.info current_researcher.notebook.pages.first.created_at > 1.days.ago
     logger.info "-----------------------------------------------------"
-    if current_researcher.notebook.pages.first.created_at > 1.days.ago
+    if current_researcher.notebook.pages && current_researcher.notebook.pages.first.created_at > 1.days.ago
 
       redirect_to root_path, :alert => "You can create only 1 page per day!"
     else
