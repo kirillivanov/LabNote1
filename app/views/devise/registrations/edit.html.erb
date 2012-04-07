@@ -1,4 +1,7 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<section class="container_12">
+<div  class="grid_12 push_4 auth">
+
+<h4>Edit <%= resource_name.to_s.humanize %></h4>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= devise_error_messages! %>
@@ -23,3 +26,5 @@
 
 
 <%= link_to "Back", :back %>
+</div>
+</section>

@@ -1,4 +1,7 @@
-<h2>Sign in</h2>
+<section class="container_12">
+<div  class="grid_12 push_4 auth">
+
+<h4>Sign in</h4>
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
   <div><%= f.label :email %><br />
@@ -14,4 +17,5 @@
   <div><%= f.submit "Sign in" %></div>
 <% end %>
 
-<%= render "links" %>
+</div>
+</section>

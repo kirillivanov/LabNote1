@@ -8,3 +8,109 @@
 .alert {
   color: red;
 }
+section  {
+  h4 { font-size: 16px; font-weight: bold; margin: 10px 0 10px 0; };
+  a {  color: #285882; text-decoration: underline; font-size: 14px; };
+  font-size: 12px;
+}
+body {
+  font-family: tahoma, arial, verdana, sans-serif, Lucida Sans;
+  font-size: 11px;
+  background: #eee;
+}
+
+.header {
+  height: 20px;
+  background: #ccc;
+  color: #333;
+  padding: 5px;
+  text-align: right;
+}
+
+#alerts {
+  float: left;
+}
+
+#projects, #notebook, #pages, #experiments, #other_experiments {
+  border-bottom: 1px solid #333;
+  margin-bottom: 10px;
+  padding: 20px;
+}
+
+#auth {
+  h4 { font-size: 18px; margin: 20px 0 25px 0; }
+  margin-bottom: 10px;
+  padding: 20px;
+
+  a, submit {
+  line-height: 40px;
+  padding: 7px 12px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: .9em;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+  border: none;
+  background: #63759A  repeat-x 0 50%;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  };
+
+  a:hover {
+   background: #4083A9  repeat-x 0 50%;
+  }
+}
+
+input:focus, textarea:focus {
+outline: 0;
+color: #333;
+border-color: #56B4EF;
+-webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,.05),0 0 8px rgba(82,168,236,.6);
+-moz-box-shadow: inset 0 1px 3px rgba(0,0,0,.05),0 0 8px rgba(82,168,236,.6);
+box-shadow: inset 0 1px 3px rgba(0,0,0,.05),0 0 8px rgba(82,168,236,.6);
+}
+
+input, textarea, select {
+  display: inline-block;
+  width: 210px;
+  padding: 4px;
+  margin: 0;
+  outline: none;
+  background-color: white;
+  border: 1px solid #CCC;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+
+input[type="submit"] {
+  position: relative;
+  display: inline-block;
+  overflow: visible;
+  padding: 5px 10px;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 18px;
+  color: #fff;
+  background-color: #63759A;
+  background-repeat: no-repeat;
+  border: 1px solid #CCC;
+  cursor: pointer;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  border-radius: 0 url(0);
+  margin-left: 5px;
+}
+
+input[type="submit"]:hover {
+  background-color: #4083A9 ;
+}
+
+input[type="checkbox"] {
+  width: 20px;
+}

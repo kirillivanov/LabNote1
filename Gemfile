@@ -21,15 +21,22 @@ group :assets do
 end
 
 gem "nifty-generators", :group => :development
+gem 'rails-erd', :group => :development
+gem 'ruby-graphviz'
 gem 'execjs'
 gem 'therubyracer'
 gem 'haml'
 gem 'jquery-rails'
 gem 'thin'
-gem 'mocha'
 
+
+# file attach
 gem "rmagick"
 gem 'carrierwave'
+
+#pagination
+gem 'kaminari'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -40,8 +47,8 @@ gem 'carrierwave'
 # gem 'unicorn'
 
 # Deploy with Capistrano
- gem 'capistrano'
-
+gem 'capistrano'
+gem 'mocha'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 gem 'devise'
