@@ -1,3 +1,5 @@
+<section class="container_12">
+<div  class="grid_12 push_4 auth">
 <p>
   <strong>Name:</strong>
   <%= @experiment.name %>
@@ -15,5 +17,8 @@
   <%= link_to "Edit", edit_experiment_path(@experiment) %> |
   <%= link_to "Destroy", @experiment, :confirm => 'Are you sure?', :method => :delete %> 
 </p>
-
+<p>
 <%= link_to "home", root_path %>
+</p>
+</div>
+</section>

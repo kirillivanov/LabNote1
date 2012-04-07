@@ -1,10 +1,9 @@
+<section class="container_12">
+<div  class="grid_12 push_4 auth">
+
 <p>
   <strong>Name:</strong>
   <%= @project.name %>
-</p>
-<p>
-  <strong>Researcher:</strong>
-  <%#= @project.researcher_id %>
 </p>
 
 <p>
@@ -12,3 +11,8 @@
   <%= link_to "Destroy", @project, :confirm => 'Are you sure?', :method => :delete %> |
   <%= link_to "View All", projects_path %>
 </p>
+
+<%= link_to "home", root_path %>
+
+</div>
+</section>
