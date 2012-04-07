@@ -11,10 +11,11 @@
     <div id="pages" class="grid_12">
     <h4>My notebook(<%= link_to("delete", current_researcher.notebook, :confirm => 'Are you sure?', :method => :delete) %>):</h4>
 
-    <%if current_researcher.notebook.pages %>
-    <%current_researcher.notebook.pages.each_with_index do |p, i|%>
-      <%= link_to "Page #{i+1} / #{p.created_at}", p %> (<%= pluralize( p.notes.count, "note") if p.notes %>)<%= link_to "(delete)", p, :confirm => 'Are you sure?', :method => :delete %> <br />
-    <% end %>
+    <% if @pages %>
+      <% @pages.each do |p|%>
+        <%= link_to "Page #{p.created_at}", p %> (<%= pluralize( p.notes.count, "note") if p.notes %>)<%= link_to "(delete)", p, :confirm => 'Are you sure?', :method => :delete %> <br />
+      <% end %>
+      <%= paginate @pages, :param_name => "pages_page" %>
     <% end %>
     <%= render "pages/form" %>
     </div>
@@ -34,6 +35,7 @@
               <% end %> </span>
           </li> 
         <% end %>
+        <%= paginate @projects, :param_name => "projects_page" %>
         <p><%= link_to "New Project", new_project_path %></p>
       <% end %>
     </div>
@@ -43,7 +45,7 @@
       <%if current_researcher.experiments %>
         <h4>My experiments:</h4>
         <ul>
-        <% @projects.each do |p| %>
+        <% @experiments.each do |p| %>
             <li style="margin-bottom: 10px; border-bottom: 1px dashed #333;">
             Project <%= p.name %>: <br />
             <% p.researchers.each do |r| %>
@@ -59,6 +61,7 @@
           <% end %>
           </li>
         <% end %>
+        <%= paginate @experiments, :param_name => "e_page" %>
         </ul>
       <% end %>
 
@@ -70,7 +73,7 @@
     <div id="other_experiments" class="grid_12">
     <h4>Other user experiments:</h4>
         <ul>
-        <% @projects.each do |p| %>
+        <% @other_experiments.each do |p| %>
             <li style="margin-bottom: 10px; border-bottom: 1px dashed #333;">
             Project <%= p.name %>: <br />
             <% p.researchers.each do |r| %>
@@ -86,6 +89,7 @@
           <% end %>
           </li>
         <% end %>
+        <%= paginate @other_experiments, :param_name => "o_e_page" %>
         </ul>
     </div>
 

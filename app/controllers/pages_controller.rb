@@ -6,7 +6,7 @@ class PagesController < ApplicationController
   def show
     @page = Page.find(params[:id])
     @note = Note.new
-    @notes = Note.all
+    @notes = @page.notes.page(params[:page]).per(3)
   end
 
   def new

@@ -119,3 +119,16 @@ textarea {
   width: 400px;
   height: 200px
 }
+
+
+.pagination {
+  margin: 20px 0;
+}
+
+.pagination .disabled {
+  color: #777;
+}
+.page { border: 1px solid #333; margin: 5px; padding: 5px; background-color: #fff;}
+.current {
+  
+}
