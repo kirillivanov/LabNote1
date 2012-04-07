@@ -14,7 +14,11 @@ class PagesController < ApplicationController
   end
 
   def create
-    if current_researcher.notebook.pages.last && current_researcher.notebook.pages.last.created_at.to_date == Date.today - 1.day
+    logger.info "-----------------------------------------------------"
+    logger.info current_researcher.notebook.pages.first.created_at > 1.days.ago
+    logger.info "-----------------------------------------------------"
+    if current_researcher.notebook.pages.first.created_at > 1.days.ago
+
       redirect_to root_path, :alert => "You can create only 1 page per day!"
     else
       @page = current_researcher.notebook.pages.new(params[:page])
