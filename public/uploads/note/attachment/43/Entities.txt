@@ -1,0 +1,22 @@
+Researcher
+- id
+- name
+
+Page
+- text
+- attachments (images, files)
+- lastChangeDate
+- notebook_id
+- experiment_id
+
+Notebook
+- researched_id
+
+Experiment
+- researcher_id
+- project_id
+- startDate
+
+Project
+- id 
+- name 

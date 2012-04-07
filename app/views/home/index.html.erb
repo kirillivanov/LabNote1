@@ -47,7 +47,7 @@
         <ul>
         <% @experiments.each do |p| %>
             <li style="margin-bottom: 10px; border-bottom: 1px dashed #333;">
-            Project <%= p.name %>: <br />
+            <%="Project '#{p.name}'" %>: <br />
             <% p.researchers.each do |r| %>
               <% if r == current_researcher %>
                 <span style="margin-left: 10px;"><%= r.name %></span><br />

@@ -7,8 +7,7 @@
   Note for experiment: <%= n.experiment.name if n.experiment %> <%= link_to "(edit)", edit_note_path(n) %> <%= link_to "(delete)", n, :confirm => 'Are you sure?', :method => :delete %> <br /> 
   Text: <%= n.text %><br />
   Attachment: <%= link_to("#{File.basename(n.attachment.url)}", n.attachment.url) if n.attachment.url %><br />
-  <%= n.created_at %> <br />
-  ----------------------------------------------<br />
+  <%= n.created_at %> 
   </div>
 <% end %>
 <%= paginate @notes %>
