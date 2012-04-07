@@ -1,8 +1,10 @@
-<h2>Page <%= @page.created_at %></h2>
+<section class="container_12">
+<div  class="grid_12 push_4 auth">
+<h4>Page <%= @page.created_at %></h4>
 <% @page.notes.each do |n| %>
-  Note for experiment: <%= n.experiment.name if n.experiment %> <%= link_to "(edit)", edit_note_path(n) %><br /> 
+  Note for experiment: <%= n.experiment.name if n.experiment %> <%= link_to "(edit)", edit_note_path(n) %> <%= link_to "(delete)", n, :confirm => 'Are you sure?', :method => :delete %> <br /> 
   Text: <%= n.text %><br />
-  Attachment: <%= link_to "#{File.basename(n.attachment.url)}", n.attachment.url %><br />
+  Attachment: <%= link_to("#{File.basename(n.attachment.url)}", n.attachment.url) if n.attachment.url %><br />
   <%= n.created_at %> <br />
   ----------------------------------------------<br />
 <% end %>
@@ -10,3 +12,4 @@
 <%= render 'notes/form' %>
 
 <%= link_to "home", root_path %>
+</div></section>

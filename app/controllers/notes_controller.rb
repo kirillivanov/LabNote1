@@ -35,7 +35,8 @@ class NotesController < ApplicationController
 
   def destroy
     @note = Note.find(params[:id])
+    @page = Page.find(@note.page_id)
     @note.destroy
-    redirect_to root_path, :notice => "Successfully destroyed note."
+    redirect_to @page, :notice => "Successfully destroyed note."
   end
 end
