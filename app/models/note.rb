@@ -3,5 +3,5 @@ class Note < ActiveRecord::Base
   mount_uploader :attachment, AttachmentUploader
   belongs_to :page
   belongs_to :experiment
-  default_scope :order => 'notes.created_at ASC'
+  default_scope :order => 'notes.created_at DESC'
 end
