@@ -1,0 +1,4 @@
+<% @pages.each do |p|%>
+  <%= link_to "Page #{p.created_at}", p %> (<%= pluralize( p.notes.count, "note") if p.notes %>)
+  <%= link_to "(delete)", p, :confirm => 'Are you sure?', :method => :delete %> <br />
+<% end %>

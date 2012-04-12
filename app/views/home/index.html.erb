@@ -5,94 +5,65 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
   </div>
-    <%= "You logged in as #{ current_researcher.email }" %>(<%= link_to("sign_out", destroy_researcher_session_path, :method => :get) %>, <%= link_to("edit", edit_researcher_registration_path ) %>)
+    <%= "You logged in as #{current_researcher.email}" %>(<%= link_to("sign_out", destroy_researcher_session_path, :method => :get) %>, <%= link_to("edit", edit_researcher_registration_path ) %>)
   </div>
   <%  if current_researcher.notebook %>
+
     <div id="pages" class="grid_12">
-    <h4>My notebook(<%= link_to("delete", current_researcher.notebook, :confirm => 'Are you sure?', :method => :delete) %>):</h4>
-
-    <% if @pages %>
-      <% @pages.each do |p|%>
-        <%= link_to "Page #{ p.created_at }", p %> (<%= pluralize( p.notes.count, "note") if p.notes %>)<%= link_to "(delete)", p, :confirm => 'Are you sure?', :method => :delete %> <br />
+      <h4>My notebook(<%= link_to("delete", current_researcher.notebook, :confirm => 'Are you sure?', :method => :delete) %>):</h4>
+      <% if @pages %>
+        <div id="pages_block" style="min-height: 200px;">
+          <%= render 'pages' %>
+        </div>
+        <div id="pages_paginator">
+          <%= paginate @pages, :remote => true, :param_name => "pages_page" %>
+        </div>
       <% end %>
-      <%= paginate @pages, :param_name => "pages_page" %>
-    <% end %>
-    <%= render "pages/form" %>
+      <div id="add_page">
+        <%= render "pages/form"%>
+      </div>
     </div>
-
 
     <div id="projects" class="grid_12">
       <h4>Projects:</h4>
-      <%if @projects %>
-        <ul>
-        <%@projects.each do |p|%>
-          <li style="margin-bottom: 10px; border-bottom: 1px dashed #333;"> Project <%= p.name %>(<%= link_to "delete", p, :confirm => 'Are you sure?', :method => :delete %>)
-               <%= link_to("follow", follow_path(p)) unless followed?(p) %>
-               <%= link_to("unfollow", unfollow_path(p)) if followed?(p) %> <br />
-             <span style="font-size: 12px;"> Project followers:
-              <% p.researchers.each do |r| %>
-                <%= r.name %>
-              <% end %> </span>
-          </li> 
-        <% end %>
-        <%= paginate @projects, :param_name => "projects_page" %>
+      <% if @projects %>
+        <div id="projects_block" style="min-height: 200px;">
+          <%= render 'projects' %>
+        </div>
+        <div id="projects_paginator">
+          <%= paginate @projects, :remote => true, :param_name => "projects_page" %>
+        </div>
         <p><%= link_to "New Project", new_project_path %></p>
       <% end %>
     </div>
     
-
     <div id="experiments" class="grid_12">
-      <%if current_researcher.experiments %>
-        <h4>My experiments:</h4>
-        <ul>
-        <% @experiments.each do |p| %>
-            <li style="margin-bottom: 10px; border-bottom: 1px dashed #333;">
-            <%="Project '#{p.name}'" %>: <br />
-            <% p.researchers.each do |r| %>
-              <% if r == current_researcher %>
-                <span style="margin-left: 10px;"><%= r.name %></span><br />
-                <ul style="margin-bottom: 10px;">
-                <% r.experiments.where(:project_id => p.id).each do |e| %>
-                  <li><span style="margin-left: 20px;"><%= link_to e.name, e %></span></li>
-                <% end %>
-              </ul>
-              <% end %>
-
-          <% end %>
-          </li>
-        <% end %>
-        <%= paginate @experiments, :param_name => "e_page" %>
-        </ul>
+      <h4>My experiments(<%= current_researcher.experiments.count %>):</h4>
+      <% if @experiments %>
+        <div id="experiments_block" style="min-height: 200px;">
+          <%= render 'experiments' %>
+        </div>
+        <div id="experiments_paginator">
+            <%= paginate @experiments, :remote => true, :param_name => "experiments_page" %>
+        </div>
       <% end %>
-
-
-
       <%= link_to "New Experiment", new_experiment_path %>
     </div>
 
     <div id="other_experiments" class="grid_12">
     <h4>Other user experiments:</h4>
         <ul>
-        <% @other_experiments.each do |p| %>
-            <li style="margin-bottom: 10px; border-bottom: 1px dashed #333;">
-            Project <%= p.name %>: <br />
-            <% p.researchers.each do |r| %>
-              <% unless r == current_researcher %>
-                <span style="margin-left: 10px;"><%= r.name %></span><br />
-                <ul style="margin-bottom: 10px;">
-                <% r.experiments.where(:project_id => p.id).each do |e| %>
-                  <li><span style="margin-left: 20px;"><%= link_to e.name, e %></span></li>
-                <% end %>
-              </ul>
-              <% end %>
-
-          <% end %>
-          </li>
-        <% end %>
-        <%= paginate @other_experiments, :param_name => "o_e_page" %>
+          <div id="o_e_block" style="min-height: 200px;">
+            <%= render 'o_e' %>
+          </div>
+          <div id="o_e_paginator">
+            <%= paginate @other_experiments, :remote => true, :param_name => "o_e_page" %>
+          </div>
         </ul>
     </div>
-
+    <div id="chart">
+      
+    </div>
   <% else %>
     <div id="notebook" class="grid_12">
     <%= render "notebooks/form" %>

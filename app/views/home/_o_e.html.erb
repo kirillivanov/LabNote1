@@ -1,0 +1,5 @@
+<% @other_experiments.each do |p| %>
+  <%= p.name %> / <%= p.experiments.count %> 
+  <% p.researchers.each do |p| %> 
+  | <%= p.name %>  <%end %> <br />
+<% end %>

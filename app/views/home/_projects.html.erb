@@ -1,0 +1,11 @@
+<%@projects.each do |p|%>
+  <li style="margin-bottom: 10px; border-bottom: 1px dashed #333;"> Project <%= p.name %>(<%= link_to "delete", p, :confirm => 'Are you sure?', :method => :delete %>)
+       <%= link_to("follow", follow_path(p)) unless followed?(p) %>
+       <%= link_to("unfollow", unfollow_path(p)) if followed?(p) %> <br />
+     <span style="font-size: 12px;"> Project followers:
+      <% p.researchers.each do |r| %>
+        <%= r.name %>
+      <% end %> 
+    </span>
+  </li> 
+<% end %>

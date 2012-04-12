@@ -1,0 +1,13 @@
+<% if params[:pages_page] %>
+  $('#pages_block').html('<%= escape_javascript render 'pages' %>');
+  $('#pages_paginator').html('<%= escape_javascript(paginate(@pages, :remote => true, :param_name => "pages_page").to_s) %>');
+<% elsif params[:projects_page] %>
+  $('#projects_block').html('<%= escape_javascript render 'projects' %>');
+  $('#projects_paginator').html('<%= escape_javascript(paginate(@projects, :remote => true, :param_name => "projects_page").to_s) %>');
+<% elsif params[:experiments_page] %>
+  $('#experiments_block').html('<%= escape_javascript render 'experiments' %>');
+  $('#experiments_paginator').html('<%= escape_javascript(paginate(@experiments, :remote => true, :param_name => "experiments_page").to_s) %>');
+<% elsif params[:o_e_page] %>
+  $('#o_e_block').html('<%= escape_javascript render 'o_e' %>');
+  $('#o_e_paginator').html('<%= escape_javascript(paginate(@other_experiments, :remote => true, :param_name => "o_e_page").to_s) %>');
+<% end %>

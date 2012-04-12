@@ -1,0 +1,6 @@
+<% @experiments.each do |p| %>
+  <%= p.name %> <br />
+  <% p.experiments.each_with_index do |e,i| %>
+    | <%= link_to "#{e.name}", e %>
+  <% end %><br />
+<% end %>

@@ -1,17 +1,41 @@
 <section class="container_12">
-<div  class="grid_12 push_4 auth">
+<div  class="grid_12 push_4 auth" style="margin-top: 10px;">
 
-<p>
-  <strong>Name:</strong>
-  <%= @project.name %>
-</p>
+  <script type="text/javascript" charset="utf-8">
+    $(function () {
+      new Highcharts.Chart({
+        chart: { renderTo: 'experiments-graph' },
+        title: { text: '<%= @project.name %>' },
+        xAxis: { type: 'datetime' },
+        yAxis: {
+            title: { text: 'Researchers'}, tickInterval: 1
 
-<p>
-  <%= link_to "Edit", edit_project_path(@project) %> |
-  <%= link_to "Destroy", @project, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", projects_path %>
-</p>
+        },
+        series: [
+        <% Researcher.all.each_with_index do |r, i| %>
+          <% @firts_experiment = '' %>
+          {
+            name: '<%= r.name %>',
+           // pointInterval: <%= 1.day * 1000 %>,
+            pointStart: <%= @project.created_at.to_i * 1000  %>,
+            data: [1+<%=i %>, 1+<%=i %>, 1+<%=i %>, 1+<%=i %>, 1+<%=i %>, 1+<%=i %>, 1+<%=i %>, 1+<%=i %>, 1+<%=i %>]
+          },
+        <% end %>
+        ]
+      });
+    });
+  </script>
 
+  <div id="experiments-graph" style="width: 500px; height: 400px;">
+  </div>
+
+<div style="margin-top: 10px">
+  <p>
+    <%= link_to "Edit", edit_project_path(@project) %> |
+    <%= link_to "Destroy", @project, :confirm => 'Are you sure?', :method => :delete %> |
+    <%= link_to "View All", projects_path %>
+  </p>
+</div>
 <%= link_to "home", root_path %>
 
 </div>
