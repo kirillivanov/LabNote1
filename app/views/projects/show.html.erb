@@ -1,5 +1,5 @@
 <section class="container_12">
-<div  class="grid_12 push_4 auth" style="margin-top: 10px;">
+<div  class="grid_12" style="margin-top: 10px;">
 
   <script type="text/javascript" charset="utf-8">
     $(function () {
@@ -8,18 +8,25 @@
         title: { text: '<%= @project.name %>' },
         xAxis: { 
                  type: 'datetime',
-                 tickInterval: 7 * 24 * 3600 * 100, // one week
+                 tickInterval:  24 * 3600 * 1000, 
                  tickWidth: 0, 
                },
         yAxis: {
           title: { text: 'Researchers'}, tickInterval: 1
         },
+        scrollbar: {
+          enabled: true
+        },    tooltip: {
+              formatter: function () {
+                return Highcharts.dateFormat('%a %d %b %H:%M:%S', this.x) + " " + this.series.name;
+              }
+        }, 
         series: [
         <% @project.researchers.each_with_index do |r, i| %>
           { 
             name: '<%= r.name %>',
-            pointInterval: <%= 1.day * 1000 %>,
-            pointStart: <%=  3.weeks.ago.at_midnight.to_i * 1000  %>,
+            pointInterval:  24 * 3600 * 1000,
+            pointStart: <%=  @project.created_at.to_i * 1000  %>,
             data: <%= r.experiments.map {|e| [ e.created_at.to_i * 1000, i+1] }.inspect %>
             //data: <%= r.experiments.map { |e| { name: e.name, x: @project.created_at.to_i, y: 5 }  }.inspect %>
           },
@@ -29,7 +36,7 @@
     });
   </script>
 
-  <div id="experiments-graph" style="width: 500px; height: 400px;">
+  <div id="experiments-graph" style=" ">
   </div>
 
 <div style="margin-top: 10px">
