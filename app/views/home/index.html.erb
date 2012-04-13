@@ -9,10 +9,10 @@
   </div>
   <%  if current_researcher.notebook %>
 
-    <div id="pages" class="grid_12">
-      <h4>My notebook(<%= link_to("delete", current_researcher.notebook, :confirm => 'Are you sure?', :method => :delete) %>):</h4>
+    <div id="pages" class="grid_12 rounded">
+      <h4>My notebook <%= link_to("delete", current_researcher.notebook, :confirm => 'Are you sure?', :method => :delete, :class => "button red") %> </h4>
       <% if @pages %>
-        <div id="pages_block" style="min-height: 200px;">
+        <div id="pages_block" style="min-height: 100px;">
           <%= render 'pages' %>
         </div>
         <div id="pages_paginator">
@@ -24,8 +24,8 @@
       </div>
     </div>
 
-    <div id="projects" class="grid_12">
-      <h4>Projects:</h4>
+    <div id="projects" class="grid_12 rounded">
+      <h4>Projects</h4>
       <% if @projects %>
         <div id="projects_block" style="min-height: 200px;">
           <%= render 'projects' %>
@@ -33,12 +33,12 @@
         <div id="projects_paginator">
           <%= paginate @projects, :remote => true, :param_name => "projects_page" %>
         </div>
-        <p><%= link_to "New Project", new_project_path %></p>
       <% end %>
+      <span style="margin-top: 30px; display: block;"><%= link_to "New Project", new_project_path, :class => "button green" %></span>
     </div>
     
-    <div id="experiments" class="grid_12">
-      <h4>My experiments(<%= current_researcher.experiments.count %>):</h4>
+    <div id="experiments" class="grid_12 rounded">
+      <h4>My experiments (<%= current_researcher.experiments.count %>)</h4>
       <% if @experiments %>
         <div id="experiments_block" style="min-height: 200px;">
           <%= render 'experiments' %>
@@ -47,23 +47,20 @@
             <%= paginate @experiments, :remote => true, :param_name => "experiments_page" %>
         </div>
       <% end %>
-      <%= link_to "New Experiment", new_experiment_path %>
+      <span style="margin-top: 30px; display: block;"><%= link_to "New Experiment", new_experiment_path, :class => "button green" %></span>
     </div>
 
-    <div id="other_experiments" class="grid_12">
+    <!--div id="other_experiments" class="grid_12 rounded">
     <h4>Other user experiments:</h4>
         <ul>
           <div id="o_e_block" style="min-height: 200px;">
-            <%= render 'o_e' %>
+            <%#= render 'o_e' %>
           </div>
           <div id="o_e_paginator">
-            <%= paginate @other_experiments, :remote => true, :param_name => "o_e_page" %>
+            <%#= paginate @other_experiments, :remote => true, :param_name => "o_e_page" %>
           </div>
         </ul>
-    </div>
-    <div id="chart">
-      
-    </div>
+    </div-->
   <% else %>
     <div id="notebook" class="grid_12">
     <%= render "notebooks/form" %>

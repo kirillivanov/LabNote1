@@ -1,6 +1,8 @@
-<% @experiments.each do |p| %>
-  <%= p.name %> <br />
+<ul class="list">
+<% @experiments.each_with_index do |p,i| %>
+  <li class="rounded" style="background: #fff; padding: 10px; margin-bottom: 5px;"> Project: <span class="bold"> <%= p.name %> </span> <br />
   <% p.experiments.each_with_index do |e,i| %>
-    | <%= link_to "#{e.name}", e %>
-  <% end %><br />
+    <%= "|" unless i == 0 %> <%= link_to "#{e.name}", e %>
+  <% end %></li>
 <% end %>
+</ul>

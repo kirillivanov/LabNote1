@@ -1,11 +1,15 @@
+<ul class="list">
 <%@projects.each do |p|%>
-  <li style="margin-bottom: 10px; border-bottom: 1px dashed #333;"> Project <%= p.name %>(<%= link_to "delete", p, :confirm => 'Are you sure?', :method => :delete %>)
-       <%= link_to("follow", follow_path(p)) unless followed?(p) %>
-       <%= link_to("unfollow", unfollow_path(p)) if followed?(p) %> <br />
-     <span style="font-size: 12px;"> Project followers:
-      <% p.researchers.each do |r| %>
-        <%= r.name %>
+  <li class="rounded" style="background: #fff; padding: 10px; margin-bottom: 5px;"> 
+    <span class="bold">Project <%= p.name %> <%= link_to "network graph", p %>  </span>
+      <% if p.researchers.count > 0 %>  <br /> followers:  <br /> <% end %>
+      <% p.researchers.each_with_index do |r, i| %>
+       <span class="bold"> <%= "|" unless i == 0 %> <% if r == current_researcher %><span style="color: #36C;">You</span><% else %><%= r.name %> <% end %> </span>
       <% end %> 
-    </span>
+      <span style="float: right;"><%= link_to "delete", p, :confirm => 'Are you sure?', :method => :delete, :class => "button red" %></span> 
+      <br /><br />
+    <span><%= link_to("follow", follow_path(p), :class => "button blue") unless followed?(p) %> <span>
+    <span><%= link_to("unfollow", unfollow_path(p), :class => "button red") if followed?(p) %> <span><br />
   </li> 
 <% end %>
+</ul>

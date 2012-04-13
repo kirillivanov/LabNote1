@@ -1,4 +1,6 @@
+<ul class="list">
 <% @pages.each do |p|%>
-  <%= link_to "Page #{p.created_at}", p %> (<%= pluralize( p.notes.count, "note") if p.notes %>)
-  <%= link_to "(delete)", p, :confirm => 'Are you sure?', :method => :delete %> <br />
+  <li class="rounded" style="background: #fff; padding: 10px; margin-bottom: 5px;"><span class="bold">Page </span><%= link_to "#{p.created_at}", p %> (<%= pluralize( p.notes.count, "note") if p.notes %>)
+  <span class="del-icon" style="float: right;"><%= link_to "delete", p, :confirm => 'Are you sure?', :method => :delete, :class => "button red" %> </span> </li>
 <% end %>
+</ul>

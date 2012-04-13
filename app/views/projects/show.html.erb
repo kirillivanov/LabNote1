@@ -8,17 +8,15 @@
         title: { text: '<%= @project.name %>' },
         xAxis: { type: 'datetime' },
         yAxis: {
-            title: { text: 'Researchers'}, tickInterval: 1
-
+          title: { text: 'Researchers'}, tickInterval: 1
         },
         series: [
-        <% Researcher.all.each_with_index do |r, i| %>
-          <% @firts_experiment = '' %>
-          {
+        <% @project.researchers.each_with_index do |r, i| %>
+          { 
             name: '<%= r.name %>',
-           // pointInterval: <%= 1.day * 1000 %>,
-            pointStart: <%= @project.created_at.to_i * 1000  %>,
-            data: [1+<%=i %>, 1+<%=i %>, 1+<%=i %>, 1+<%=i %>, 1+<%=i %>, 1+<%=i %>, 1+<%=i %>, 1+<%=i %>, 1+<%=i %>]
+            pointStart: <%= @project.created_at.to_i  %>,
+            data: <%= r.experiments.map {|e| [ e.created_at.to_i, i+1] } %>
+            //data: <%= r.experiments.map { |e| { name: e.name, x: @project.created_at.to_i, y: 5 }  }.inspect %>
           },
         <% end %>
         ]
@@ -31,12 +29,12 @@
 
 <div style="margin-top: 10px">
   <p>
-    <%= link_to "Edit", edit_project_path(@project) %> |
-    <%= link_to "Destroy", @project, :confirm => 'Are you sure?', :method => :delete %> |
-    <%= link_to "View All", projects_path %>
+    <%= link_to "back", root_path, :class => "button green"  %>
+    <%= link_to "Edit", edit_project_path(@project), :class => "button blue" %> 
+    <%= link_to "Destroy", @project, :confirm => 'Are you sure?', :method => :delete, :class => "button red" %>  
   </p>
 </div>
-<%= link_to "home", root_path %>
+
 
 </div>
 </section>

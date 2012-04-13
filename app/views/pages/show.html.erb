@@ -1,18 +1,26 @@
 <section class="container_12">
-<div  class="grid_12 push_4 auth">
+<div class="grid_12 push_4" style="font-size: 12px;">
 
 <h4>Page <%= @page.created_at %></h4>
-<% @notes.each do |n| %>
-<div style="background: white; width: 400px; margin-bottom: 10px; border: 1px solid #ccc; padding: 5px;">
-  Note for experiment: <%= n.experiment.name if n.experiment %> <%= link_to "(edit)", edit_note_path(n) %> <%= link_to "(delete)", n, :confirm => 'Are you sure?', :method => :delete %> <br /> 
-  Text: <%= n.text %><br />
+<% @notes.each do |n| %> 
+<div class="rounded" style="background: white; width: 400px; margin-bottom: 10px;  padding: 15px;">
+  <span class="bold">Experiment: </span> <%= n.experiment.name if n.experiment %> 
+  <span style="float: right;">
+    <span class="margin-right: 5px;"><%= link_to "edit", edit_note_path(n), :class => "button blue" %></span>
+    <%= link_to "delete", n, :confirm => 'Are you sure?', :method => :delete, :class => "button red" %> 
+  </span>  <br />
   Attachment: <%= link_to("#{File.basename(n.attachment.url)}", n.attachment.url) if n.attachment.url %><br />
-  <%= n.created_at %> 
+  <br />
+ 
+  Text: <br />
+  <div style="background: #f5f5f5; border-bottom: 1px solid #333; padding: 10px; ">
+   <%= raw RedCloth.new(n.text).to_html %>
   </div>
+  <%= n.created_at %> 
+    </div>
 <% end %>
 <%= paginate @notes %>
-
-<%= render 'notes/form' %>
-
-<%= link_to "home", root_path %>
+<div class="rounded" style="background: white; width: 400px; margin-bottom: 10px;  padding: 15px;">
+  <%= render 'notes/form' %>
+</div>
 </div></section>
