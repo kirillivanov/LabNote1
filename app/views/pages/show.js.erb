@@ -1,0 +1,3 @@
+
+$('#notes').html('<%= escape_javascript render(@notes) %>');
+$('#notes_paginator').html('<%= escape_javascript( paginate(@notes, :remote => true) ) %>');
