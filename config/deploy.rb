@@ -17,7 +17,7 @@ set :deploy_to, "/home/rvm/webapps/#{application}"
 set :deploy_via, :remote_cache
 
 set :scm, :git
-set :repository,  "git@github.com:axgusev/LabNotebook.git"
+set :repository,  "git@github.com:kirillivanov/abrakadabra.git"
 set :branch, "master"
 set :ssh_options, { :forward_agent => true }
 

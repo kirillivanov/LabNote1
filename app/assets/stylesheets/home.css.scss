@@ -8,6 +8,7 @@
 .alert {
   color: red;
 }
+
 section  {
   h4 { font-size: 16px; font-weight: bold; margin: 10px 0 10px 0; };
   a {  color: #36C; font-size: 14px; };
@@ -62,8 +63,6 @@ section  {
    background: #4083A9  repeat-x 0 50%;
   }
 }
-
-
 
 input:focus, textarea:focus {
   outline: 0;
@@ -194,22 +193,6 @@ textarea {
   font-weight: bold;
 }
 
-a.button:hover {
-  background-color: #D14836;
-  -webkit-transition-duration: 0.3s;
-  -webkit-transition-timing: ease-out;
-  -o-transition-duration: 0.3s;
-  -o-transition-timing: ease-out;
-  -moz-transition-duration: 0.3s;
-  -moz-transition-timing: ease-out;
-  -ms-transition-duration: 0.3s;
-  -ms-transition-timing: ease-out;
-  transition-duration: 0.3s;
-  transition-timing: ease-out;
-  text-decoration: none;
-}
-
-
 a.button.blue {
   -moz-text-shadow: 0 1px 0 rgba(0,0,0,0.25);
   -webkit-text-shadow: 0 1px 0 rgba(0,0,0,0.25);
@@ -228,6 +211,31 @@ a.button.green {
   border: 1px solid #249125;
 }
 
+a.button:hover {
+  -webkit-transition-duration: 0.3s;
+  -webkit-transition-timing: ease-out;
+  -o-transition-duration: 0.3s;
+  -o-transition-timing: ease-out;
+  -moz-transition-duration: 0.3s;
+  -moz-transition-timing: ease-out;
+  -ms-transition-duration: 0.3s;
+  -ms-transition-timing: ease-out;
+  transition-duration: 0.3s;
+  transition-timing: ease-out;
+  text-decoration: none;
+}
+
+a.button.blue:hover {
+  background-color: #2A91B6;
+}
+
+a.button.green:hover {
+  background-color: #249125;
+}
+
+a.button.red:hover {
+  background-color: #DD4B39;
+}
 
 .rounded {
   -webkit-border-radius: 5px;

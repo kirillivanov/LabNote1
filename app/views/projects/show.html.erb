@@ -6,7 +6,11 @@
       new Highcharts.Chart({
         chart: { renderTo: 'experiments-graph' },
         title: { text: '<%= @project.name %>' },
-        xAxis: { type: 'datetime' },
+        xAxis: { 
+                 type: 'datetime',
+                 tickInterval: 7 * 24 * 3600 * 100, // one week
+                 tickWidth: 0, 
+               },
         yAxis: {
           title: { text: 'Researchers'}, tickInterval: 1
         },
@@ -14,8 +18,9 @@
         <% @project.researchers.each_with_index do |r, i| %>
           { 
             name: '<%= r.name %>',
-            pointStart: <%= @project.created_at.to_i  %>,
-            data: <%= r.experiments.map {|e| [ e.created_at.to_i, i+1] } %>
+            pointInterval: <%= 1.day * 1000 %>,
+            pointStart: <%=  3.weeks.ago.at_midnight.to_i * 1000  %>,
+            data: <%= r.experiments.map {|e| [ e.created_at.to_i * 1000, i+1] }.inspect %>
             //data: <%= r.experiments.map { |e| { name: e.name, x: @project.created_at.to_i, y: 5 }  }.inspect %>
           },
         <% end %>

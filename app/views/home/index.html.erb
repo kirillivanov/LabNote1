@@ -49,7 +49,7 @@
       <% end %>
       <span style="margin-top: 30px; display: block;"><%= link_to "New Experiment", new_experiment_path, :class => "button green" %></span>
     </div>
-
+    
     <!--div id="other_experiments" class="grid_12 rounded">
     <h4>Other user experiments:</h4>
         <ul>
@@ -61,6 +61,7 @@
           </div>
         </ul>
     </div-->
+
   <% else %>
     <div id="notebook" class="grid_12">
     <%= render "notebooks/form" %>
